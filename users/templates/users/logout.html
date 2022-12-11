@@ -1,0 +1,8 @@
+{% extends 'users/layout.html' %}
+{% block title %}
+  Logout
+{% endblock title %}
+{% block body %}
+<h2 class="h2">{{message}}</h2>
+<a href="{% url 'login' %}">Login</a>
+{% endblock body %}
