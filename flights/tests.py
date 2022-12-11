@@ -74,12 +74,14 @@ class FlightTestCase(TestCase):
     def test_flight_page_passengers(self):
       f = Flight.objects.get(pk=1)
       p = Passenger.objects.create(first="Alice",last="Adam")
+      p2 = Passenger.objects.create(first="Lewis",last="Swin")
       f.passengers.add(p)
+      f.passengers.add(p2)
 
       c = Client()
       response = c.get(f"/flights/{f.id}")
       self.assertEqual(response.status_code,200)
-      self.assertEqual(response.context['passengers'].count(), 1)
+      self.assertEqual(response.context['passengers'].count(), 2)
 
 
     def test_flight_page_non_passengers(self):
